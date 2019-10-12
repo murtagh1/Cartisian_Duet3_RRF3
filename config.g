@@ -29,6 +29,7 @@ M566 X900.00 Y900.00 Z12.00:12.00 E120.00:120.00         ; set maximum instantan
 M203 X6000.00 Y6000.00 Z180.00:180.00 E1200.00:1200.00    ; set maximum speeds (mm/min)
 M201 X500.00 Y500.00 Z20.00:20.00 E250.00:250.00         ; set accelerations (mm/s^2)
 M906 X800 Y800 Z900:800 E800:800 I30                   ; set motor currents (mA) and motor idle factor in per cent
+M671 X-16:540 Y0:0 S0.5         ;Leadscrews at left and right of x-axis (dual z motor compensation)
 M84 S30                                            ; Set idle timeout
 
 ; Axis Limits
@@ -75,10 +76,10 @@ M950 F2 C"out9"
 M106 P2 S0.8 H-1
 
 ; Tools
-M563 P0 S"extruder1" D0 H1 F0                      ; define tool 0
+M563 P0 S"extruder1" D0 H1                      ; define tool 0
 G10 P0 X0 Y0 Z0                                    ; set tool 0 axis offsets
 G10 P0 R0 S0                                       ; set initial tool 0 active and standby temperatures to 0C
-M563 P1 S"extruder 2" D1 H2 F0                     ; define tool 1
+M563 P1 S"extruder 2" D1 H2                     ; define tool 1
 G10 P1 X0 Y0 Z0                                    ; set tool 1 axis offsets
 G10 P1 R0 S0                                       ; set initial tool 1 active and standby temperatures to 0C
 
