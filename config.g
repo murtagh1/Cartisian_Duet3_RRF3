@@ -24,7 +24,7 @@ M569 P4 S1                                         ; physical drive 4 goes forwa
 M569 P5 S1                                         ; physical drive 5 goes forwards
 M584 X0.0 Y0.1 Z0.2:0.3 E0.4:0.5                                 ; set drive mapping
 M350 X16 Y16 Z16:16 E16:16 I1                           ; configure microstepping with interpolation
-M92 X78.68 Y80.10 Z4000.00:4000.00 E420.00:420.00          ; set steps per mm
+M92 X80.04 Y80.01 Z4000.00:4000.00 E420.00:420.00          ; set steps per mm
 M566 X900.00 Y900.00 Z12.00:12.00 E120.00:120.00         ; set maximum instantaneous speed changes (mm/min)
 M203 X6000.00 Y6000.00 Z180.00:180.00 E1200.00:1200.00    ; set maximum speeds (mm/min)
 M201 X500.00 Y500.00 Z20.00:20.00 E250.00:250.00         ; set accelerations (mm/s^2)
@@ -33,7 +33,7 @@ M84 S30                                            ; Set idle timeout
 
 ; Axis Limits
 M208 X0 Y0 Z0 S1                                   ; set axis minima
-M208 X470 Y472 Z470 S0                             ; set axis maxima
+M208 X463 Y472 Z470 S0                             ; set axis maxima
 
 ; Endstops
 M574 X1 S1 P"io0.in"   ; X min active high endstop switch
@@ -44,7 +44,7 @@ M574 Z1 S2                                        ; set endstops controlled by p
 M558 P9 C"io2.in" H5 F120 T3000                              ; set Z probe type to bltouch and the dive height + speeds
 M950 S0 C"io2.out"
 M280 P0 S10
-G31 P500 X0 Y0 Z2.5                                ; set Z probe trigger value, offset and trigger height
+G31 P500 X1 Y2 Z2.5                                ; set Z probe trigger value, offset and trigger height
 M557 X15:440 Y15:440 P20                           ; define mesh grid
 
 ; Heaters
