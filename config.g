@@ -22,32 +22,32 @@ M569 P2 S1                                         ; physical drive 2 goes forwa
 M569 P3 S1                                         ; physical drive 3 goes forwards
 M569 P4 S0                                         ; physical drive 4 goes forwards
 M569 P5 S1                                         ; physical drive 5 goes forwards
-M584 X0 
-M584 Y1 
-M584 Z2:3 
-M584 E4:5                                 ; set drive mapping
-M350 X16 Y16 Z16 E16:16 I1                           ; configure microstepping with interpolation
-M92 X80.04 
-M92 Y80.01 
-M92 Z4000.00 
-M92 E420.00:420.00          ; set steps per mm
-M566 X900.00 
-M566 Y900.00 
-M566 Z12.00 
-M566 E120.00:120.00         ; set maximum instantaneous speed changes (mm/min)
-M203 X6000.00 
-M203 Y6000.00 
-M203 Z180.00 
-M203 E1200.00:1200.00    ; set maximum speeds (mm/min)
-M201 X500.00 
-M201 Y500.00 
-M201 Z20.00 
-M201 E250.00:250.00         ; set accelerations (mm/s^2)
-M906 X1200 I30 
-M906 Y1200 I30 
-M906 Z1200 I30 
-M906 E1000:1000 I30                   ; set motor currents (mA) and motor idle factor in per cent
-;M671 X-16:540 Y0:0 S0.5         ;Leadscrews at left and right of x-axis (dual z motor compensation obsolete feauture, meshbed leveling g29 is better)
+M584 X0                                            ; set drive mapping
+M584 Y1                                            ; set drive mapping
+M584 Z2:3                                          ; set drive mapping       
+M584 E4:5                                          ; set drive mapping
+M350 X16 Y16 Z16 E16:16 I1                         ; configure microstepping with interpolation
+M92 X80.04                                         ; set steps per mm
+M92 Y80.01                                         ; set steps per mm
+M92 Z4000.00                                       ; set steps per mm
+M92 E420.00:420.00                                 ; set steps per mm
+M566 X900.00                                       ; set maximum instantaneous speed changes (mm/min)
+M566 Y900.00                                       ; set maximum instantaneous speed changes (mm/min)
+M566 Z12.00                                        ; set maximum instantaneous speed changes (mm/min)
+M566 E120.00:120.00                                ; set maximum instantaneous speed changes (mm/min)
+M203 X6000.00                                      ; set maximum speeds (mm/min)
+M203 Y6000.00                                      ; set maximum speeds (mm/min)
+M203 Z180.00                                       ; set maximum speeds (mm/min)
+M203 E1200.00:1200.00                              ; set maximum speeds (mm/min)
+M201 X500.00                                       ; set accelerations (mm/s^2)
+M201 Y500.00                                       ; set accelerations (mm/s^2)
+M201 Z20.00                                        ; set accelerations (mm/s^2)
+M201 E250.00:250.00                                ; set accelerations (mm/s^2)
+M906 X1200 I30                                     ; set motor currents (mA) and motor idle factor in percent
+M906 Y1200 I30                                     ; set motor currents (mA) and motor idle factor in percent
+M906 Z1200 I30                                     ; set motor currents (mA) and motor idle factor in percent
+M906 E1000:1000 I30                                ; set motor currents (mA) and motor idle factor in percent
+;M671 X-16:540 Y0:0 S0.5                           ;Leadscrews at left and right of x-axis (dual z motor compensation obsolete feauture, meshbed leveling g29 is better)
 M84 S30                                            ; Set idle timeout?
 
 ; Axis Limits
@@ -55,12 +55,12 @@ M208 X0 Y0 Z0 S1                                   ; set axis minima
 M208 X463 Y472 Z470 S0                             ; set axis maxima
 
 ; Endstops
-M574 X1 S1 P"io0.in"   ; X min active high endstop switch
-M574 Y1 S1 P"io1.in"   ; y min active high endstop switch
+M574 X1 S1 P"io0.in"                               ; X min active high endstop switch
+M574 Y1 S1 P"io1.in"                               ; y min active high endstop switch
 
 ; Z-Probe
-;M574 Z1 S2                                             ; set endstops controlled by probe
-M558 P9 C"io2.in" H5 R1 F50 T6000 A5 S0.02 B1                              ; set Z probe type to bltouch and the dive height + speeds
+;M574 Z1 S2                                        ; set endstops controlled by probe
+M558 P9 C"io2.in" H5 R1 F50 T6000 A5 S0.02 B1      ; set Z probe type to bltouch and the dive height + speeds
 M950 S0 C"io2.out"
 ;M280 P3 S10 
 ;M280 P3 S90
@@ -69,9 +69,9 @@ M557 X15:440 Y15:440 P20                           ; define mesh grid
 
 ; Heaters
 ;declare temp sensors
-M308 S0 P"temp0" Y"thermistor" T100000 B3950   ; set thermistor + ADC parameters for heater 0
-M308 S1 P"temp1" Y"thermistor" T500000 B4723 C0.856220e-7 I1; set thermistor + ADC parameters for heater 1
-M308 S2 P"temp2" Y"thermistor" T500000 B4723 C0.856220e-7 ; set thermistor + ADC parameters for heater 2
+M308 S0 P"temp0" Y"thermistor" T100000 B3950                       ; set thermistor + ADC parameters for heater 0
+M308 S1 P"temp1" Y"thermistor" T500000 B4723 C0.856220e-7 I1       ; set thermistor + ADC parameters for heater 1
+M308 S2 P"temp2" Y"thermistor" T500000 B4723 C0.856220e-7          ; set thermistor + ADC parameters for heater 2
 
 
 ;declare heaters
@@ -95,12 +95,12 @@ M950 F2 C"out9"
 M106 P2 S0.8 H-1
 
 ; Tools
-M563 P0 S"extruder0" D0 H1                     ; define tool 0
-G10 P0 X0 Y0 Z0                                    ; set tool 0 axis offsets
-G10 P0 R100 S100                                       ; set initial tool 0 active and standby temperatures to 0C
-M563 P1 S"extruder1" D1 H2                    ; define tool 1
-G10 P1 X0 Y0 Z0                                    ; set tool 1 axis offsets
-G10 P1 R100 S100                                       ; set initial tool 1 active and standby temperatures to 0C
+M563 P0 S"extruder0" D0 H1                          ; define tool 0
+G10 P0 X0 Y0 Z0                                     ; set tool 0 axis offsets
+G10 P0 R100 S100                                    ; set initial tool 0 active and standby temperatures to 0C
+M563 P1 S"extruder1" D1 H2                          ; define tool 1
+G10 P1 X0 Y0 Z0                                     ; set tool 1 axis offsets
+G10 P1 R100 S100                                    ; set initial tool 1 active and standby temperatures to 0C
 
 ; Custom settings are not defined
 
