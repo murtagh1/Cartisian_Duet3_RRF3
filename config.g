@@ -27,9 +27,9 @@ M584 Y1                                            ; set drive mapping
 M584 Z2:3                                          ; set drive mapping       
 M584 E4:5                                          ; set drive mapping
 M350 X16 Y16 Z16 E16:16 I1                         ; configure microstepping with interpolation
-M92 X80.04                                         ; set steps per mm
-M92 Y80.01                                         ; set steps per mm
-M92 Z4000.00                                       ; set steps per mm
+M92 X79.9                                         ; set steps per mm
+M92 Y79.95                                         ; set steps per mm
+M92 Z402.0                                       ; set steps per mm
 M92 E420.00:420.00                                 ; set steps per mm
 M566 X900.00                                       ; set maximum instantaneous speed changes (mm/min)
 M566 Y900.00                                       ; set maximum instantaneous speed changes (mm/min)
@@ -43,34 +43,36 @@ M201 X500.00                                       ; set accelerations (mm/s^2)
 M201 Y500.00                                       ; set accelerations (mm/s^2)
 M201 Z20.00                                        ; set accelerations (mm/s^2)
 M201 E250.00:250.00                                ; set accelerations (mm/s^2)
-M906 X1200 I30                                     ; set motor currents (mA) and motor idle factor in percent
-M906 Y1200 I30                                     ; set motor currents (mA) and motor idle factor in percent
-M906 Z1200 I30                                     ; set motor currents (mA) and motor idle factor in percent
-M906 E1000:1000 I30                                ; set motor currents (mA) and motor idle factor in percent
-;M671 X-16:540 Y0:0 S0.5                           ;Leadscrews at left and right of x-axis (dual z motor compensation obsolete feauture, meshbed leveling g29 is better)
+M906 X900 I30                                     ; set motor currents (mA) and motor idle factor in percent
+M906 Y900 I30                                     ; set motor currents (mA) and motor idle factor in percent
+M906 Z900 I30                                     ; set motor currents (mA) and motor idle factor in percent
+M906 E900:900 I30                                ; set motor currents (mA) and motor idle factor in percent
+M671 X-16:540 Y25:25 S15                            ;Leadscrews at left and right of x-axis (dual z motor compensation obsolete feauture, meshbed leveling g29 is better)
+M557 X25:463 Y25:462 P5
 M84 S30                                            ; Set idle timeout?
 
 ; Axis Limits
-M208 X0 Y0 Z0 S1                                   ; set axis minima
-M208 X463 Y472 Z470 S0                             ; set axis maxima
+;M208 X0 Y0 Z0 S1                                   ; set axis minima
+;M208 X463 Y472 Z500 S0                             ; set axis maxima
+M208 X0:463 Y0:472
 
 ; Endstops
 M574 X1 S1 P"io0.in"                               ; X min active high endstop switch
 M574 Y1 S1 P"io1.in"                               ; y min active high endstop switch
 
 ; Z-Probe
-;M574 Z1 S2                                        ; set endstops controlled by probe
-M558 P9 C"io2.in" H5 R1 F50 T6000 A5 S0.02 B1      ; set Z probe type to bltouch and the dive height + speeds
-M950 S0 C"io2.out"
-;M280 P3 S10 
-;M280 P3 S90
-G31 P500 X1 Y2 Z2.5                                ; set Z probe trigger value, offset and trigger height
-M557 X15:440 Y15:440 P20                           ; define mesh grid
+M574 Z1 S2                                        ; set endstops controlled by probe
+M558 P9 C"io8.in" H5 R1 F400 T6000 A5 S0.02 B1      ; set Z probe type to bltouch and the dive height + speeds
+M950 S0 C"io8.out"
+;M280 P0 S10
+;M280 P0 S90
+G31 P500 X0 Y0 Z2.3                               ; set Z probe trigger value, offset and trigger height
+;M557 X25:463 Y25:472 R2 P25                            ; define mesh grid 2mm radius probe with 20 probe points to take note for later-20mm x, 23.5mm y spacing
 
 ; Heaters
 ;declare temp sensors
 M308 S0 P"temp0" Y"thermistor" T100000 B3950                       ; set thermistor + ADC parameters for heater 0
-M308 S1 P"temp1" Y"thermistor" T500000 B4723 C0.856220e-7 I1       ; set thermistor + ADC parameters for heater 1
+M308 S1 P"temp1" Y"thermistor" T500000 B4723 C0.856220e-7       ; set thermistor + ADC parameters for heater 1
 M308 S2 P"temp2" Y"thermistor" T500000 B4723 C0.856220e-7          ; set thermistor + ADC parameters for heater 2
 
 
@@ -107,3 +109,5 @@ G10 P1 R100 S100                                    ; set initial tool 1 active 
 ; Miscellaneous
 M911 S10 R11 P"M913 X0 Y0 G91 M83 G1 Z3 E-5 F1000" ; set voltage thresholds and actions to run on power loss
 
+M557 X25:463 Y25:472 P20
+;
